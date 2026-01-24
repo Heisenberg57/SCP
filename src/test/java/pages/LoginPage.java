@@ -24,6 +24,21 @@ public class LoginPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
+    public void open(String baseUrl) {
+        driver.get(baseUrl + "/login");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameInput));
+    }
+
+    public void enterUsername(String username) {
+        driver.findElement(usernameInput).clear();
+        driver.findElement(usernameInput).sendKeys(username);
+    }
+
+    public void enterPassword(String password) {
+        driver.findElement(passwordInput).clear();
+        driver.findElement(passwordInput).sendKeys(password);
+    }
+
     public void clickLogin() {
         wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
     }
