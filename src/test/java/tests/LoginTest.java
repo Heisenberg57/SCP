@@ -47,4 +47,18 @@ public class LoginTest extends BaseTest {
         String message = loginPage.getFlashMessage();
         Assert.assertTrue(message.toLowerCase().contains("invalid"),"Expected invalid login message, got: " + message);
     }
+
+    @Test
+    public void emptyCredentialsTest(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open(baseUrl);
+
+        loginPage.enterUsername("");
+        loginPage.enterPassword("");
+        loginPage.clickLogin();
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("/login"),"User should not be logged in with empty credentials");
+        Assert.assertTrue(loginPage.isErrorVisible(),"Error message should appear when submitting empty form");
+
+    }
 }
