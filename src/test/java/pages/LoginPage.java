@@ -18,6 +18,7 @@ public class LoginPage {
     private By passwordInput = By.id("password");
     private By loginButton = By.cssSelector("button[type='submit']");
     private By flashMessage = By.id("flash");
+    private By errorMessage = By.id("flash");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -50,6 +51,12 @@ public class LoginPage {
         return message.getText();
 
     }
+
+    public boolean isErrorVisible(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).isDisplayed();
+    }
+
+
 
 
 
