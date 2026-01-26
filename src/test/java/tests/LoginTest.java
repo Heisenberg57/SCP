@@ -61,4 +61,24 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.isErrorVisible(),"Error message should appear when submitting empty form");
 
     }
+
+    @Test
+    public void logoutFlowTest(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open(baseUrl);
+
+        loginPage.enterUsername(ConfigReader.get("username"));
+        loginPage.enterPassword(ConfigReader.get("password"));
+        loginPage.clickLogin();
+
+        SecureAreaPage secureAreaPage = new SecureAreaPage(driver);
+        Assert.assertTrue(secureAreaPage.isLogoutButtonVisible(),"Logout Button is not visible after login");
+
+        secureAreaPage.clickLogout();
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("/login"),"User should be redirected to login page after logout");
+
+        String logoutMessage = secureAreaPage.getLogoutMessage();
+        Assert.assertTrue(logoutMessage.toLowerCase().contains("logged out"),"Logout success message not shown: "+logoutMessage);
+    }
 }
