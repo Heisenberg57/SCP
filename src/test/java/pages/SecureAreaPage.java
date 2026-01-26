@@ -12,6 +12,7 @@ public class SecureAreaPage {
     private WebDriverWait wait;
 
     private By logoutButton = By.cssSelector("a.button.secondary.radius");
+    private By flashMessage = By.id("flash");
 
     public SecureAreaPage(WebDriver driver){
         this.driver = driver;
@@ -21,6 +22,14 @@ public class SecureAreaPage {
 
     public boolean isLogoutButtonVisible(){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(logoutButton)).isDisplayed();
+    }
+
+    public void clickLogout(){
+        wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();
+    }
+
+    public String getLogoutMessage(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(flashMessage)).getText();
     }
 
 }
