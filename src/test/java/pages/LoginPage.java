@@ -47,6 +47,7 @@ public class LoginPage {
     public void clickLogin() {
        // wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
         wait.waitForClickability(loginButton);
+        driver.findElement(loginButton).click();
     }
 
     public String getFlashMessage() {
