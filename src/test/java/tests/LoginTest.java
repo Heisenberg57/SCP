@@ -42,7 +42,7 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogin();
 
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"),"User should remain on login page after invalid login");
-        Assert.assertTrue(loginPage.isErrorVisible(),"Error Message should be visible for invalid login");
+        Assert.assertTrue(loginPage.isFlashMessageVisible(),"Error Message should be visible for invalid login");
 
         String message = loginPage.getFlashMessage();
         Assert.assertTrue(message.toLowerCase().contains("invalid"),"Expected invalid login message, got: " + message);
@@ -58,7 +58,7 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogin();
 
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"),"User should not be logged in with empty credentials");
-        Assert.assertTrue(loginPage.isErrorVisible(),"Error message should appear when submitting empty form");
+        Assert.assertTrue(loginPage.isFlashMessageVisible(),"Error message should appear when submitting empty form");
 
     }
 

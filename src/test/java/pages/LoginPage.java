@@ -60,7 +60,7 @@ public class LoginPage {
 
     }
 
-    public boolean isErrorVisible(){
+    public boolean isFlashMessageVisible(){
         //return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).isDisplayed();
         return  wait.waitForVisibility(errorMessage).isDisplayed();
     }
