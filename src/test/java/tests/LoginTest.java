@@ -76,6 +76,7 @@ public class LoginTest extends BaseTest {
 
         secureAreaPage.clickLogout();
 
+
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"),"User should be redirected to login page after logout");
 
         String logoutMessage = secureAreaPage.getLogoutMessage();

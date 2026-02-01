@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.WaitUtils;
@@ -13,7 +14,7 @@ public class SecureAreaPage {
     //private WebDriverWait wait;
     private WaitUtils waitUt;
 
-    private By logoutButton = By.cssSelector("a.button.secondary.radius");
+    private By logoutButton = By.linkText("Logout");
     private By flashMessage = By.id("flash");
 
     public SecureAreaPage(WebDriver driver){
@@ -30,8 +31,11 @@ public class SecureAreaPage {
     }
 
     public void clickLogout(){
-        //wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();
-        waitUt.waitForClickability(logoutButton);
+        WebElement logoutBtn = waitUt.waitForClickable(logoutButton);
+        logoutBtn.click();
+
+        // Now wait for redirect AFTER a successful click
+        waitUt.waitForUrlContains("/login");
     }
 
     public String getLogoutMessage(){

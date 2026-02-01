@@ -21,9 +21,10 @@ public class WaitUtils {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         }
 
-    public void waitForClickability(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    public WebElement waitForClickable(By locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+
 
     public void waitForInvisibility(By locator) {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));

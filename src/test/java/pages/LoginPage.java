@@ -46,7 +46,7 @@ public class LoginPage {
 
     public void clickLogin() {
        // wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
-        wait.waitForClickability(loginButton);
+        wait.waitForClickable(loginButton);
         driver.findElement(loginButton).click();
     }
 
