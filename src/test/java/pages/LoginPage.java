@@ -65,6 +65,10 @@ public class LoginPage {
         return  wait.waitForVisibility(errorMessage).isDisplayed();
     }
 
+    public boolean isAt(){
+        return driver.getCurrentUrl().contains("/login");
+    }
+
 
 
 
