@@ -82,4 +82,13 @@ public class LoginTest extends BaseTest {
         String logoutMessage = secureAreaPage.getLogoutMessage();
         Assert.assertTrue(logoutMessage.toLowerCase().contains("logged out"),"Logout success message not shown: "+logoutMessage);
     }
+
+    @Test
+    public void securePageShouldNotBeAccessibleWithoutLogin(){
+        driver.get(baseUrl+"/secure");
+
+        LoginPage loginPage = new LoginPage(driver);
+
+        Assert.assertTrue(loginPage.isAt(),"User should be redirected to login page when accessing secure page directly");
+    }
 }
