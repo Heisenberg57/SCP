@@ -91,4 +91,17 @@ public class LoginTest extends BaseTest {
 
         Assert.assertTrue(loginPage.isAt(),"User should be redirected to login page when accessing secure page directly");
     }
+
+    @Test
+    public void validUserCanLogin(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open(baseUrl);
+
+        loginPage.loginAs(
+                ConfigReader.get("username"),
+                ConfigReader.get("password")
+        );
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("/secure"),"User should be redirected to secure area after valid login");
+    }
 }
