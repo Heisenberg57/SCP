@@ -69,6 +69,16 @@ public class LoginPage {
         return driver.getCurrentUrl().contains("/login");
     }
 
+    public void loginAs(String username, String password){
+        wait.waitForVisibility(usernameInput).clear();
+        wait.waitForVisibility(usernameInput).sendKeys(username);
+
+        wait.waitForVisibility(passwordInput).clear();
+        wait.waitForVisibility(passwordInput).sendKeys(password);
+
+        wait.waitForClickable(loginButton).click();
+    }
+
 
 
 
