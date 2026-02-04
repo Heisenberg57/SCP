@@ -54,9 +54,10 @@ public class LoginPage {
 //        WebElement message = wait.until(ExpectedConditions.visibilityOfElementLocated(flashMessage)
 //        );
 
-        WebElement message = wait.waitForVisibility(flashMessage);
-
-        return message.getText();
+//        WebElement message = wait.waitForVisibility(flashMessage);
+//
+//        return message.getText();
+        return wait.waitForVisibility(flashMessage).getText();
 
     }
 
