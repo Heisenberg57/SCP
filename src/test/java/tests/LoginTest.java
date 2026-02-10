@@ -67,11 +67,14 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open(baseUrl);
 
-        loginPage.enterUsername(ConfigReader.get("username"));
-        loginPage.enterPassword(ConfigReader.get("password"));
-        loginPage.clickLogin();
+//        loginPage.enterUsername(ConfigReader.get("username"));
+//        loginPage.enterPassword(ConfigReader.get("password"));
+//        loginPage.clickLogin();
+
+        loginPage.loginAs(ConfigReader.get("username"),ConfigReader.get("password"));
 
         SecureAreaPage secureAreaPage = new SecureAreaPage(driver);
+        Assert.assertTrue(secureAreaPage.isAt(),"User should be at secure page");
         Assert.assertTrue(secureAreaPage.isLogoutButtonVisible(),"Logout Button is not visible after login");
 
         secureAreaPage.clickLogout();
