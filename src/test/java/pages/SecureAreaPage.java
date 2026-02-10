@@ -24,6 +24,12 @@ public class SecureAreaPage {
 
     }
 
+    public boolean isAt(){
+        return driver.getCurrentUrl().contains("/secure");
+    }
+
+
+
     public boolean isLogoutButtonVisible(){
         //return wait.until(ExpectedConditions.visibilityOfElementLocated(logoutButton)).isDisplayed();
         return waitUt.waitForVisibility(logoutButton).isDisplayed();
