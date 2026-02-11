@@ -1,6 +1,10 @@
 package tests;
 
 import base.BaseTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -8,6 +12,8 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.SecureAreaPage;
 import utils.ConfigReader;
+
+import java.time.Duration;
 
 public class LoginTest extends BaseTest {
 
@@ -107,4 +113,29 @@ public class LoginTest extends BaseTest {
 
         Assert.assertTrue(driver.getCurrentUrl().contains("/secure"),"User should be redirected to secure area after valid login");
     }
+
+    @Test
+    public void dynamicContentShouldLoadAfterAjax() {
+
+        driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
+
+        driver.findElement(By.cssSelector("#start button")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(
+                ExpectedConditions.invisibilityOfElementLocated(By.id("loading"))
+        );
+
+        WebElement finishText = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.id("finish"))
+        );
+
+        Assert.assertEquals(
+                finishText.getText(),
+                "Hello World!",
+                "Dynamic content did not load correctly"
+        );
+    }
+
 }
